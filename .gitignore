@@ -3,3 +3,4 @@ include/
 .editorconfig
 *.exe
 *.log
+updates.txt
