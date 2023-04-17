@@ -1,5 +1,6 @@
 #include "splashkit.h"
-#include "player.h"
+#include "lib/player.h"
+#include "lib/power_up.h"
 
 /**
  * Load the game images, sounds, etc.
