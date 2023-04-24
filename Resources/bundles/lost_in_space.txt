@@ -36,6 +36,8 @@ BITMAP,time,time.png
 BITMAP,silver_coin,silver_coin.png,26,26,6,1,6
 BITMAP,bronse_coin,bronse_coin.png,26,26,6,1,6
 BITMAP,gold_coin,gold_coin.png,26,26,6,1,6
+//Fonts
+FONT,roboto,RobotoMono-Medium.ttf,14
 // Other
 BITMAP,box,box.png
 BITMAP,empty,empty.png
