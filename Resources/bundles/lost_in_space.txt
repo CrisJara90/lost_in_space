@@ -1,3 +1,6 @@
+// Welcome screen
+BITMAP,game_title,game_title.png
+BITMAP,start_button,start_button.png
 // Ships
 BITMAP,aquarii,Aquarii.png
 BITMAP,gliese,Gliese.png
