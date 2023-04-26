@@ -33,6 +33,10 @@ struct player_data
     sprite      player_sprite;
     int         score;
     ship_kind   kind;
+    float fuel_pct;
+    float shield;
+    float health; // 1 is going to be 100% of health, while 0.5 will be 50%
+    int ammunition;
 };
 
 /**
