@@ -38,8 +38,14 @@ BITMAP,bronse_coin,bronse_coin.png,26,26,6,1,6
 BITMAP,gold_coin,gold_coin.png,26,26,6,1,6
 //Fonts
 FONT,roboto,RobotoMono-Medium.ttf,14
+// Icons
+BITMAP,ammo-icon,Medium_Ammo_Icon.png
+BITMAP,shield-icon,shield-icon.png
+BITMAP,health-icon,health-icon.png
+BITMAP,fuel-icon,fuel-icon.png
 // Other
 BITMAP,box,box.png
 BITMAP,empty,empty.png
+BITMAP,fuel-bar,green_bar_bubbles.png
 BITMAP,full,full.png
 ANIM,coins,coin_animation.txt
