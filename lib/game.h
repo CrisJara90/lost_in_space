@@ -5,8 +5,6 @@
  * @file game.h
  * @author your name (you@domain.com)
  * @brief  This file is meant to import all the necesarry libraries for the project.
- * @version 0.1
- * @date 2023-04-25
  * 
  * @copyright Copyright (c) 2023
  * 
@@ -16,5 +14,6 @@
 #include "player.h"
 #include "power_up.h"
 #include "button.h"
+#include "hud.h"
 
 #endif
