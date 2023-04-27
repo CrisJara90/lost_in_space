@@ -1,5 +1,6 @@
 #include "splashkit.h"
 #include "hud.h"
+#include <iostream>
 
 using namespace std;
 
@@ -86,9 +87,10 @@ void draw_hud(player_data player, power_up_data power_up)
     draw_bitmap("fuel-icon", fuel_icon_x, fuel_icon_y, option_to_screen());
     fill_rectangle(COLOR_DARK_GRAY, fuel_bar_x+GAP, fuel_bar_y, fuel_bar_w, fuel_bar_h,  option_to_screen()); // empty bar
     fill_rectangle(COLOR_LIGHT_GOLDENROD_YELLOW, fuel_bar_x+GAP, fuel_bar_y, fuel_bar_w * player.fuel_pct, fuel_bar_h,  option_to_screen());
-    //draw_bitmap("empty", fuel_bar_x, fuel_bar_y, option_to_screen());
+    //draw_bitmap("empty", fuel_bar_x+GAP, fuel_bar_y, option_to_screen());
     // (THERE IS AN ERROR HERE!) 
-    //draw_bitmap("fuel-bar", fuel_bar_x, fuel_bar_y, option_part_bmp(fuel_bar_x, fuel_bar_y, fuel_bar_w * player.fuel_pct, bitmap_height("fuel-bar"), option_to_screen()));
+    //int part_width = static_cast<int>(bitmap_width("fuel-bar") * player.fuel_pct);
+    //draw_bitmap("fuel-bar", 40, , option_part_bmp(0, 0, part_width, bitmap_height("fuel-bar"), option_to_screen()));
 
 
     // Draw shield icon and bar
