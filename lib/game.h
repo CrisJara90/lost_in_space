@@ -3,8 +3,8 @@
 
 /**
  * @file game.h
- * @author your name (you@domain.com)
- * @brief  This file is meant to import all the necesarry libraries for the project.
+ * @author Alejandro Jara
+ * @brief  This file is meant to import all the necesarry libraries for the game project.
  * 
  * @copyright Copyright (c) 2023
  * 

@@ -2,7 +2,6 @@
 #define LOST_IN_SPACE_PLAYER
 
 #include "splashkit.h"
-#include <vector>
 
 using namespace std;
 
@@ -27,6 +26,10 @@ enum ship_kind
  * @field   player_sprite   The player's sprite - used to track position and movement
  * @field   score           The current score for the player
  * @field   kind            Current kind of player ship
+ * @field   fuel_pct        Current amount of fuel of player. Goes from 0 to 1 
+ * @field   shield          Current amount of shield the player has. Goes from 0 to 1
+ * @field   health          Current amount of health the players. Goes from 0 to 1
+ * @field   ammunition      Current number of bullets the player has.
  */
 struct player_data
 {
@@ -35,7 +38,7 @@ struct player_data
     ship_kind   kind;
     float fuel_pct;
     float shield;
-    float health; // 1 is going to be 100% of health, while 0.5 will be 50%
+    float health;
     int ammunition;
 };
 
@@ -65,6 +68,6 @@ void update_player(player_data &player_to_update);
  * 
  * @param player    The player to update
  */
-void handle_input(player_data &player);
+void handle_input(player_data &player, bool &is_full_screen);
 
 #endif 

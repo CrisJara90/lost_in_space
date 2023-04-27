@@ -75,8 +75,6 @@ void update_player(player_data &player_to_update)
     update_sprite(player_to_update.player_sprite);
     // Test edge of screen boundaries to adjust the camera
     double left_edge = camera_x() + SCREEN_BORDER;
-    //double left_edge = center_point(player_to_update.player_sprite).x;
-    //double right_edge = left_edge;
     double right_edge = left_edge + screen_width() - 2 * SCREEN_BORDER;
     double top_edge = camera_y() + SCREEN_BORDER;
     double bottom_edge = top_edge + screen_height() - 2 * SCREEN_BORDER;
@@ -126,8 +124,7 @@ void player_switch_to_ship(player_data &player, ship_kind target)
     }
 }
 
-bool is_full_screen = false;
-void handle_input(player_data &player)
+void handle_input(player_data &player, bool &is_full_screen)
 {
     // Allow the player to switch between full screen mode and normal screen.
     if(key_typed(F11_KEY))
@@ -164,9 +161,12 @@ void handle_input(player_data &player)
     if (key_down(RIGHT_KEY))
         sprite_set_rotation(player.player_sprite, rotation + PLAYER_ROTATE_SPEED);
 
-    // Increase speed with up/down keys - typed to give step increases
+    // Allow player to move forward or backwards by holding the up/down keys - Movement happens only when the key is pressed
     if (key_down(UP_KEY))
         sprite_set_dx(player.player_sprite, 2*PLAYER_SPEED);
-    else if(key_up(UP_KEY))
+    else if (key_down(DOWN_KEY))
+        sprite_set_dx(player.player_sprite, -2*PLAYER_SPEED);
+    else if (key_released(UP_KEY) || key_released(DOWN_KEY))
         sprite_set_dx(player.player_sprite, 0);
 }
+

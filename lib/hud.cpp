@@ -4,10 +4,10 @@
 
 using namespace std;
 
-void draw_hud(player_data player, power_up_data power_up)
+void draw_hud(const player_data &player)
 {
     // HUD
-    // HUD will have the score and location
+    // HUD reactangle will wrap the score and location
     int hud_x = 0;
     int hud_y = 0;
     int hud_height = 70;
@@ -16,7 +16,6 @@ void draw_hud(player_data player, power_up_data power_up)
     string location_text = "LOCATION: " + to_string(center_point(player.player_sprite).x) + ", " + to_string(center_point(player.player_sprite).y);
     int location_text_font_size = 15;
     double location_h = text_height(location_text, DEFAULT_FONT, location_text_font_size);
-    double location_w = text_width(location_text, DEFAULT_FONT, location_text_font_size);
     double location_x = GAP;
     double location_y = GAP;
     //score
@@ -24,17 +23,16 @@ void draw_hud(player_data player, power_up_data power_up)
     int score_text_font_size = 20;
     double score_x = GAP;
     double score_y = location_y + location_h + GAP;
-    double score_h = text_height(score_text, DEFAULT_FONT, score_text_font_size);
 
 
     //shield icon
     double shield_icon_x = MARGIN;
-    double shield_icon_y = LOWER_BAR_POSITION;
+    double shield_icon_y = LOWER_SECTION_HUD;
     double shield_icon_h = bitmap_height("shield-icon");
     double shield_icon_w = bitmap_width("shield-icon");
     //shield bar
     double shield_bar_x = MARGIN + shield_icon_w;
-    double shield_bar_y = LOWER_BAR_POSITION;
+    double shield_bar_y = LOWER_SECTION_HUD;
     double shield_bar_h = shield_icon_h;
     double shield_bar_w = BAR_LENGTH;
 
@@ -43,9 +41,8 @@ void draw_hud(player_data player, power_up_data power_up)
     double ammo_icon_x = screen_width() - bitmap_width("ammo-icon") - MARGIN;
     double ammo_icon_y = shield_bar_y;
     double ammo_icon_w = bitmap_width("ammo-icon"); // ammo icon is a square so width is equal to heigth
-
+    // Ammo text
     string ammo_text = to_string(player.ammunition);
-    //int ammo_text_font_size = 100*ammo_icon_w/55; // if full screen
     int ammo_text_font_size = 50*ammo_icon_w/55;
     double ammo_text_x = ammo_icon_x - text_width(ammo_text, "roboto", ammo_text_font_size);
     double ammo_text_y = ammo_icon_y;
@@ -60,7 +57,7 @@ void draw_hud(player_data player, power_up_data power_up)
     double health_bar_x = MARGIN + health_icon_w;
     double health_bar_y = shield_bar_y + shield_bar_h + GAP;
     double health_bar_h = health_icon_h;
-    double health_bar_w = BAR_LENGTH; // 100 of health 1 of health is 5px
+    double health_bar_w = BAR_LENGTH;
 
 
     // fuel icon
@@ -87,10 +84,6 @@ void draw_hud(player_data player, power_up_data power_up)
     draw_bitmap("fuel-icon", fuel_icon_x, fuel_icon_y, option_to_screen());
     fill_rectangle(COLOR_DARK_GRAY, fuel_bar_x+GAP, fuel_bar_y, fuel_bar_w, fuel_bar_h,  option_to_screen()); // empty bar
     fill_rectangle(COLOR_LIGHT_GOLDENROD_YELLOW, fuel_bar_x+GAP, fuel_bar_y, fuel_bar_w * player.fuel_pct, fuel_bar_h,  option_to_screen());
-    //draw_bitmap("empty", fuel_bar_x+GAP, fuel_bar_y, option_to_screen());
-    // (THERE IS AN ERROR HERE!) 
-    //int part_width = static_cast<int>(bitmap_width("fuel-bar") * player.fuel_pct);
-    //draw_bitmap("fuel-bar", 40, , option_part_bmp(0, 0, part_width, bitmap_height("fuel-bar"), option_to_screen()));
 
 
     // Draw shield icon and bar

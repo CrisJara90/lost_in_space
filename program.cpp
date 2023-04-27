@@ -18,7 +18,8 @@ void load_resources()
 int main()
 {
     open_window("Lost In Space", 800, 600);
-    
+    bool is_full_screen = false;
+
     load_resources();
 
     player_data player;
@@ -57,7 +58,7 @@ int main()
     {
         // Handle input to adjust player movement
         process_events();
-        handle_input(player);
+        handle_input(player, is_full_screen);
 
         // Perform movement and update the camera
         update_player(player);
@@ -67,56 +68,21 @@ int main()
         // Redraw everything
         clear_screen(COLOR_BLACK);
 
-        // including something stationary - it doesn't move
-        fill_rectangle(COLOR_WHITE, 400, 400, 10, 10);
-
-        // as well as the player who can move
+        // draw the updated player
         draw_player(player);
 
+        // if the power up has not been taken by the player yet
         if(!power_up.hide)
+        {
+            // draw the updated power_up 
             draw_power_up(power_up);
 
-        // Draw HUD
-        draw_hud(player, power_up);
-
-        // handle collisions
-        if (sprite_collision(player.player_sprite, power_up.power_up_sprite) && !power_up.hide)
-        {
-            // hide power up
-            power_up.hide = true;
-            // update player depending on the power up
-            switch (power_up.kind)
-            {
-                case FUEL:
-                    if(player.fuel_pct != 1)
-                        player.fuel_pct += 0.5;
-                    write_line("fuel " + to_string(player.fuel_pct));
-                    break;
-                case SHIELD:
-                    if(player.shield != 1)
-                        player.shield += 0.25;
-                    write("shield ");
-                    write_line(player.shield);
-                    break;
-                case HEALTH:
-                    if(player.health != 1)
-                        player.health += 0.25;
-                    write("health ");
-                    write_line(player.health);
-                    break;
-                case AMMUNITION:
-                    player.ammunition += 10;
-                    write("ammunition ");
-                    write_line(player.ammunition);
-                    break;
-                default:
-                    write("score ");
-                    player.score += 1;
-                    write_line(player.score);
-                    break;
-            }
+            // handle collisions between the player and the power ups
+            handle_collisions(player, power_up);
         }
-    
+
+        // Draw HUD
+        draw_hud(player);
 
         refresh_screen(60);
         clock++;
