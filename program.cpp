@@ -25,7 +25,7 @@ int main()
     player = new_player();
 
     power_up_data power_up;
-    power_up = new_power_up(0, 0);
+    power_up = new_power_up(100, 100);
     
     /* Draw Welcome Page */
     bitmap title = bitmap_named("game_title");
@@ -73,10 +73,49 @@ int main()
         // as well as the player who can move
         draw_player(player);
 
-        draw_power_up(power_up);
+        if(!power_up.hide)
+            draw_power_up(power_up);
 
         // Draw HUD
         draw_hud(player, power_up);
+
+        // handle collisions
+        if (sprite_collision(player.player_sprite, power_up.power_up_sprite) && !power_up.hide)
+        {
+            // hide power up
+            power_up.hide = true;
+            // update player depending on the power up
+            switch (power_up.kind)
+            {
+                case FUEL:
+                    if(player.fuel_pct != 1)
+                        player.fuel_pct += 0.5;
+                    write_line("fuel " + to_string(player.fuel_pct));
+                    break;
+                case SHIELD:
+                    if(player.shield != 1)
+                        player.shield += 0.25;
+                    write("shield ");
+                    write_line(player.shield);
+                    break;
+                case HEALTH:
+                    if(player.health != 1)
+                        player.health += 0.25;
+                    write("health ");
+                    write_line(player.health);
+                    break;
+                case AMMUNITION:
+                    player.ammunition += 10;
+                    write("ammunition ");
+                    write_line(player.ammunition);
+                    break;
+                default:
+                    write("score ");
+                    player.score += 1;
+                    write_line(player.score);
+                    break;
+            }
+        }
     
 
         refresh_screen(60);

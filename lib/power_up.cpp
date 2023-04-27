@@ -9,8 +9,12 @@ bitmap power_up_bitmap(power_up_kind kind)
         return bitmap_named("fuel");
     case SHIELD:
         return bitmap_named("shield");
+    case HEALTH:
+        return bitmap_named("heart");
+    case AMMUNITION:
+        return bitmap_named("bullet");
     default:
-        return bitmap_named("potion");
+        return bitmap_named("gold_coin");
     }
 }
 
@@ -18,8 +22,9 @@ bitmap power_up_bitmap(power_up_kind kind)
 power_up_data new_power_up(double x, double y)
 {
     power_up_data result;
-    power_up_kind kind = static_cast<power_up_kind>(rnd(3));
-    result.power_up_sprite = create_sprite(power_up_bitmap(kind));
+    result.hide = false;
+    result.kind = static_cast<power_up_kind>(rnd(0,4));
+    result.power_up_sprite = create_sprite(power_up_bitmap(result.kind));
     sprite_set_x(result.power_up_sprite, x);
     sprite_set_y(result.power_up_sprite, y);
 

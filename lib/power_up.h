@@ -9,13 +9,16 @@ enum power_up_kind
 {
     FUEL,
     SHIELD,
-    POTION
+    HEALTH,
+    AMMUNITION,
+    COINS
 };
 
 struct power_up_data
 {
     power_up_kind kind;
     sprite power_up_sprite;
+    bool hide;
 };
 
 power_up_data new_power_up(double x, double y);
